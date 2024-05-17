@@ -1,0 +1,13 @@
+- name: Surprise
+  hosts: localhost
+  vars:
+    ansible_connection: local
+
+  tasks:
+  - name: Never gonna let you down
+    ansible.builtin.copy:
+      src: roll.txt
+      dest: /home/ec2-user/environment/surprise.txt
+      owner: ec2-user
+      group: ec2-user
+      mode: '0644'

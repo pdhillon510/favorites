@@ -238,3 +238,56 @@ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
 ```
 
 Scan the bigger version of the image (`otherdevopsgene/favorites:big`) and compare the results.
+
+## Exercise: My first Terraform server
+
+Change to the `~/environments/favorites/extras/terraform-example` directory.
+
+```shell
+cd ~/environments/favorites/extras/terraform-example
+```
+
+Initialize the directory for Terraform.
+
+```shell
+terraform init
+```
+
+Edit the `Name` tag in `main.tf` to be your name.
+
+Validate the syntax, see the planned changes, and apply them.
+
+```shell
+terraform validate
+terraform plan
+terraform apply
+```
+
+Use the AWS CLI to verify it is running. Fill in your name
+
+```shell
+aws ec2 describe-instances --filters "Name=tag:Name,Values=YourName" \
+  --query "Reservations[].Instances[].State.Name"
+```
+
+Tear down any infrastructure you created.
+
+```shell
+terraform destroy
+```
+
+## Exercise: Running Ansible
+
+Change to the `~/environments/favorites/extras/ansible-example` directory.
+
+```shell
+cd ~/environments/favorites/extras/terraform-example
+```
+
+Look at `surprise.txt`.
+
+In the terminal, run the `surprise.yaml` playbook, which is similar to what Gene ran in the demo.
+
+```shell
+ansible-playbook surprise.yaml
+```
